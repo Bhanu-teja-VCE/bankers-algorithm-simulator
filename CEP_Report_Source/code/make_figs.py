@@ -19,7 +19,10 @@ for p in ("none", "banker", "prealloc"):
 ax.set_xlabel("Claim ratio  (sum of maximum claims / total instances)")
 ax.set_ylabel("Workloads ending in deadlock (%)")
 ax.legend()
-fig.tight_layout(); fig.savefig("figs/deadlock_rate.pdf"); plt.close(fig)
+fig.tight_layout()
+fig.savefig("figs/deadlock_rate.pdf")
+fig.savefig("figs/deadlock_rate.png", dpi=300, facecolor="white")
+plt.close(fig)
 
 # Fig 2: completion time
 fig, ax = plt.subplots(figsize=(6, 3.6))
@@ -31,7 +34,10 @@ for p in ("none", "banker", "prealloc"):
 ax.set_xlabel("Claim ratio  (sum of maximum claims / total instances)")
 ax.set_ylabel("Mean rounds to finish all processes")
 ax.legend(fontsize=8)
-fig.tight_layout(); fig.savefig("figs/completion_time.pdf"); plt.close(fig)
+fig.tight_layout()
+fig.savefig("figs/completion_time.pdf")
+fig.savefig("figs/completion_time.png", dpi=300, facecolor="white")
+plt.close(fig)
 
 # Fig 3: complexity
 rows = R["e3"]
@@ -43,7 +49,10 @@ a1.set_xlabel("Number of processes n"); a1.set_ylabel("Need $\\leq$ Work tests")
 a2.loglog(n, [r["ms"] for r in rows], "s-", color="tab:purple", label="measured time")
 a2.loglog(n, [rows[0]["ms"] * (k / n[0]) ** 2 for k in n], "k--", label=r"$\propto n^2$")
 a2.set_xlabel("Number of processes n"); a2.set_ylabel("Time per safety check (ms)"); a2.legend(fontsize=8)
-fig.tight_layout(); fig.savefig("figs/complexity.pdf"); plt.close(fig)
+fig.tight_layout()
+fig.savefig("figs/complexity.pdf")
+fig.savefig("figs/complexity.png", dpi=300, facecolor="white")
+plt.close(fig)
 
 # Fig 4: Work vector along the safe sequence of the textbook state
 seq = ["start", "P1", "P3", "P4", "P0", "P2"]
@@ -53,5 +62,8 @@ ax.plot(seq, A, "o-", label="A (total 10)"); ax.plot(seq, B, "s-", label="B (tot
 ax.plot(seq, C, "^-", label="C (total 7)")
 ax.set_xlabel("Process completed in the safe sequence"); ax.set_ylabel("Work (free instances)")
 ax.set_ylim(0, 11); ax.legend(ncol=3, fontsize=8, loc="lower right")
-fig.tight_layout(); fig.savefig("figs/work_vector.pdf"); plt.close(fig)
+fig.tight_layout()
+fig.savefig("figs/work_vector.pdf")
+fig.savefig("figs/work_vector.png", dpi=300, facecolor="white")
+plt.close(fig)
 print("ok")
