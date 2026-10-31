@@ -1,0 +1,56 @@
+
+      Allocation  Max         Need        
+Proc  ( A  B  C)  ( A  B  C)  ( A  B  C)  
+P0    ( 0  1  0)  ( 7  5  3)  ( 7  4  3)  
+P1    ( 2  0  0)  ( 3  2  2)  ( 1  2  2)  
+P2    ( 3  0  2)  ( 9  0  2)  ( 6  0  0)  
+P3    ( 2  1  1)  ( 2  2  2)  ( 0  1  1)  
+P4    ( 0  0  2)  ( 4  3  3)  ( 4  3  1)  
+Total     : (10  5  7)
+Available : ( 3  3  2)
+
+>>> SAFETY
+
+Safety algorithm: Work = Available; repeat: find Pi with Need_i <= Work
+Step Process  Work before     Need            Work after (+Alloc) 
+1    P1       ( 3  3  2)      ( 1  2  2)      ( 5  3  2)          
+2    P3       ( 5  3  2)      ( 0  1  1)      ( 7  4  3)          
+3    P4       ( 7  4  3)      ( 4  3  1)      ( 7  4  5)          
+4    P0       ( 7  4  5)      ( 7  4  3)      ( 7  5  5)          
+5    P2       ( 7  5  5)      ( 6  0  0)      (10  5  7)          
+
+RESULT: the system is in a SAFE state.  Safe sequence: <P1, P3, P4, P0, P2>
+(7 Need<=Work comparisons)
+
+>>> REQUEST P1 1 0 2
+[GRANTED] Request [1, 0, 2] granted to P1. New state is safe, safe sequence: <P1, P3, P4, P0, P2>
+
+>>> REQUEST P4 3 3 0
+[WAIT] Resources not available now (request [3, 3, 0] > available [2, 3, 0]). P4 must wait.
+
+>>> REQUEST P0 0 2 0
+[UNSAFE] Granting [0, 2, 0] to P0 would lead to an UNSAFE state. Request denied (pretend allocation rolled back).
+
+>>> REQUEST P1 5 0 0
+[ERROR] P1 exceeds its maximum claim (request [5, 0, 0] > need [0, 2, 0]).
+
+>>> REQUEST P1 0 2 0
+[GRANTED] Request [0, 2, 0] granted to P1. New state is safe, safe sequence: <P1, P3, P4, P0, P2>
+
+>>> RELEASE P1
+[OK] P1 finished. Released ( 3  2  2).
+
+>>> REQUEST P0 0 2 0
+[GRANTED] Request [0, 2, 0] granted to P0. New state is safe, safe sequence: <P3, P0, P2, P4>
+
+>>> SHOW
+
+      Allocation  Max         Need        
+Proc  ( A  B  C)  ( A  B  C)  ( A  B  C)  
+P0    ( 0  3  0)  ( 7  5  3)  ( 7  2  3)  
+P1    ( 0  0  0)  ( 0  0  0)  ( 0  0  0)  (finished)
+P2    ( 3  0  2)  ( 9  0  2)  ( 6  0  0)  
+P3    ( 2  1  1)  ( 2  2  2)  ( 0  1  1)  
+P4    ( 0  0  2)  ( 4  3  3)  ( 4  3  1)  
+Total     : (10  5  7)
+Available : ( 5  1  2)

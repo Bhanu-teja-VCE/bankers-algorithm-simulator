@@ -1,0 +1,10 @@
+# Requests for the textbook state
+SAFETY
+REQUEST P1 1 0 2      # available and safe -> granted
+REQUEST P4 3 3 0      # more than available -> wait
+REQUEST P0 0 2 0      # available but leads to unsafe state -> denied
+REQUEST P1 5 0 0      # more than P1 declared -> error
+REQUEST P1 0 2 0      # P1 now holds its full claim
+RELEASE P1            # P1 finishes and returns its resources
+REQUEST P0 0 2 0      # same request as before is now safe
+SHOW

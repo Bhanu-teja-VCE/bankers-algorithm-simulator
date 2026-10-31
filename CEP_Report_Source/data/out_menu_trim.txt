@@ -1,0 +1,37 @@
+
+======== Banker's Algorithm | 1.State 2.Safety 3.Request 4.Finish 0.Exit
+Choice: 3
+Process name : P4
+Request (A B C) : 3 3 0
+[UNSAFE] Granting [3, 3, 0] to P4 would lead to an UNSAFE state. Request denied (pretend allocation rolled back).
+
+======== Banker's Algorithm | 1.State 2.Safety 3.Request 4.Finish 0.Exit
+Choice: 3
+Process name : P1
+Request (A B C) : 1 0 2
+[GRANTED] Request [1, 0, 2] granted to P1. New state is safe, safe sequence: <P1, P3, P4, P0, P2>
+
+======== Banker's Algorithm | 1.State 2.Safety 3.Request 4.Finish 0.Exit
+Choice: 3
+Process name : P0
+Request (A B C) : 0 2 0
+[UNSAFE] Granting [0, 2, 0] to P0 would lead to an UNSAFE state. Request denied (pretend allocation rolled back).
+
+======== Banker's Algorithm | 1.State 2.Safety 3.Request 4.Finish 0.Exit
+Choice: 3
+Process name : P1
+Request (A B C) : 5 0 0
+[ERROR] P1 exceeds its maximum claim (request [5, 0, 0] > need [0, 2, 0]).
+
+======== Banker's Algorithm | 1.State 2.Safety 3.Request 4.Finish 0.Exit
+Choice: 7
+[ERROR] Invalid choice.
+
+======== Banker's Algorithm | 1.State 2.Safety 3.Request 4.Finish 0.Exit
+Choice: 4
+Process that has finished : P1
+[OK] P1 released ( 3  0  2).
+
+======== Banker's Algorithm | 1.State 2.Safety 3.Request 4.Finish 0.Exit
+Choice: 0
+Goodbye.

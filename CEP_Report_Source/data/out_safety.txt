@@ -1,0 +1,21 @@
+
+      Allocation  Max         Need        
+Proc  ( A  B  C)  ( A  B  C)  ( A  B  C)  
+P0    ( 0  1  0)  ( 7  5  3)  ( 7  4  3)  
+P1    ( 2  0  0)  ( 3  2  2)  ( 1  2  2)  
+P2    ( 3  0  2)  ( 9  0  2)  ( 6  0  0)  
+P3    ( 2  1  1)  ( 2  2  2)  ( 0  1  1)  
+P4    ( 0  0  2)  ( 4  3  3)  ( 4  3  1)  
+Total     : (10  5  7)
+Available : ( 3  3  2)
+
+Safety algorithm: Work = Available; repeat: find Pi with Need_i <= Work
+Step Process  Work before     Need            Work after (+Alloc) 
+1    P1       ( 3  3  2)      ( 1  2  2)      ( 5  3  2)          
+2    P3       ( 5  3  2)      ( 0  1  1)      ( 7  4  3)          
+3    P4       ( 7  4  3)      ( 4  3  1)      ( 7  4  5)          
+4    P0       ( 7  4  5)      ( 7  4  3)      ( 7  5  5)          
+5    P2       ( 7  5  5)      ( 6  0  0)      (10  5  7)          
+
+RESULT: the system is in a SAFE state.  Safe sequence: <P1, P3, P4, P0, P2>
+(7 Need<=Work comparisons)
